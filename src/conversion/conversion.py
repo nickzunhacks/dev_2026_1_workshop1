@@ -16,7 +16,7 @@ class Conversion:
             celsius_a_fahrenheit(100) -> 212.0
         """
 
-        return (celsius * 9/5) + 5
+        self.fahrenheit_a_celsius((celsius * 9/5) + 5)
 
         pass
     
