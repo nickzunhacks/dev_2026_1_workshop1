@@ -60,13 +60,14 @@ class Conversion:
             decimal_a_binario(255) -> "11111111"
         """
 
+        if decimal == 0:
+            return "0"
+
         if decimal == 1:
-            return "${decimal}"
+            return "1"
         
         else: 
             return self.decimal_a_binario( int(decimal/2) ) + str(decimal % 2) 
-
-        return self.decimal_a_binario(decimal/2)
     
     def binario_a_decimal(self, binario):
         """
