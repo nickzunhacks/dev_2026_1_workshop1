@@ -56,7 +56,7 @@ class Conversion:
                 return "1"
 
             else: 
-                return self.decimal_a_binario( int(decimal/2) ) + str(decimal % 2) 
+                return solucion( int(decimal/2) ) + str(decimal % 2) 
             
         return solucion(decimal)
 
