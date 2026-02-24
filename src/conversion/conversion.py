@@ -103,50 +103,93 @@ class Conversion:
                     break
         return romano
     
-    def romano_a_decimal(self, romano):
-        """
-        Convierte un número romano a decimal.
-        
-        Args:
-            romano (str): Número romano válido
-            
-        Returns:
-            int: Número decimal
-            
-        Ejemplo:
-            romano_a_decimal("IX") -> 9
-            romano_a_decimal("MCMXCIV") -> 1994
-        """
-        pass
+    def romano_a_decimal(self, romano):            
+    
+        romanos = {
+            'M' : 1000,
+            'CM' : 900,
+            'D' : 500,
+            'CD' : 400,
+            'C' : 100,
+            'XC' : 90,
+            'L' : 50,
+            'XL' : 40,
+            'X' : 10,
+            'IX' : 9,
+            'V' : 5,
+            'IV' : 4,
+            'I' : 1
+        }
+
+        romano_aux = romano
+        decimal = 0
+
+        while len(romano_aux) > 0:
+
+            if romano_aux[:2] in romanos:
+                decimal += romanos[ romano_aux[:2] ]
+                romano_aux = romano_aux[2:]
+
+            else:
+                decimal += romanos[romano_aux[:1]]
+                romano_aux = romano_aux[1:]
+
+        return decimal
     
     def texto_a_morse(self, texto):
-        """
-        Convierte texto a código Morse.
-        
-        Args:
-            texto (str): Texto a convertir (letras y números)
-            
-        Returns:
-            str: Código Morse separado por espacios
-            
-        Ejemplo:
-            texto_a_morse("SOS") -> "... --- ..."
-            texto_a_morse("HELLO") -> ".... . .-.. .-.. ---"
-        """
-        pass
-    
+
+        texto_morse = {
+            'A' : '.-',
+            'B' : '-...',
+            'C' : '-.-.',
+            'E' : '.',
+            'H' : '....',
+            'L' : '.-..',
+            'O' : '---',
+            'S' : '...',
+            '1' : '.----',
+            '2' : '..---',
+            '3': '...--'
+        }
+
+        texto_aux = texto.upper()
+        morse = ""
+
+        for i in texto_aux:
+            morse += texto_morse[i] + " "
+
+        morse = morse[0: len(morse)-1 ]
+
+        return morse
+
     def morse_a_texto(self, morse):
-        """
-        Convierte código Morse a texto.
-        
-        Args:
-            morse (str): Código Morse separado por espacios
+
+        morse_texto = {
+            "" : "",
+            '.-' : 'A',
+            '-...' : 'B',
+            '-.-.' : 'C',
+            '.' : 'E',
+            '....' : 'H',
+            '.-..' : 'L',
+            '---' : 'O',
+            '...' : 'S',
+            '.----' : '1',
+            '..---' : '2',
+            '...--': '3'
+        }
+
+        texto = ""
+        letra = ""
+        morse_aux = morse + " "
+
+        for i in morse_aux:
             
-        Returns:
-            str: Texto decodificado
-            
-        Ejemplo:
-            morse_a_texto("... --- ...") -> "SOS"
-            morse_a_texto(".... . .-.. .-.. ---") -> "HELLO"
-        """
-        pass
+            if i == " ":
+                texto += morse_texto[letra]
+                letra = ""
+
+            else:
+                letra += i
+
+        return texto
