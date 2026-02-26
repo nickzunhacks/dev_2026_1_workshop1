@@ -31,7 +31,10 @@ class Data:
         pass
     
     def eliminar_duplicados(self, lista):
-        
+
+        if len(lista) == 0:
+            return lista
+
         lista_depurada = []
         lista_depurada.append(lista[0])
         repetido = False
