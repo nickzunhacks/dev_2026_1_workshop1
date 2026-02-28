@@ -127,31 +127,60 @@ class Data:
         return True
     
     def implementar_pila(self):
-        """
-        Implementa una estructura de datos tipo pila (stack) usando listas.
         
-        Returns:
-            dict: Diccionario con métodos push, pop, peek y is_empty
-        """
-        pass
+        lista = []
+
+        def push(x): lista.append(x)
+        def pop(): return lista.pop()
+        def peek(): return lista[-1] 
+
+
+        def is_empty(): 
+            if len(lista) == 0: return True
+            else: return False
+
+
+        return{
+
+            "push" : push,
+            "pop" : pop,
+            "peek" : peek,
+            "is_empty" : is_empty
+
+        }
     
     def implementar_cola(self):
-        """
-        Implementa una estructura de datos tipo cola (queue) usando listas.
-        
-        Returns:
-            dict: Diccionario con métodos enqueue, dequeue, peek y is_empty
-        """
-        pass
+
+        lista = []
+
+        def enqueue(x): lista.append(x)
+        def dequeue(): return lista.pop(0)
+        def peek(): return lista[0] 
+
+        def is_empty(): 
+            if len(lista) == 0: return True
+            else: return False
+
+        return{
+            "enqueue" : enqueue,
+            "dequeue" : dequeue,
+            "peek" : peek,
+            "is_empty" : is_empty
+        }
     
     def matriz_transpuesta(self, matriz):
-        """
-        Calcula la transpuesta de una matriz.
-        
-        Args:
-            matriz (list): Lista de listas que representa una matriz
-            
-        Returns:
-            list: Matriz transpuesta
-        """
-        pass
+
+        traspuesta = [] 
+
+        if len(matriz) == 0:
+            return matriz
+
+        for i in range(len(matriz[0])):
+            traspuesta.append([])
+
+        for i in range(len(traspuesta)):
+
+            for j in range(len(matriz)):
+                traspuesta[i].append(matriz[j][i])
+
+        return traspuesta
