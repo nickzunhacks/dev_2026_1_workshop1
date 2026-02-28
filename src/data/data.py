@@ -48,55 +48,83 @@ class Data:
         return lista_depurada
     
     def merge_ordenado(self, lista1, lista2):
-        """
-        Combina dos listas ordenadas en una sola lista ordenada.
+
+        listaCombinada = []
+
+        while len(lista1) != 0 and len(lista2) != 0:
         
-        Args:
-            lista1 (list): Primera lista ordenada
-            lista2 (list): Segunda lista ordenada
-            
-        Returns:
-            list: Lista combinada y ordenada
-        """
-        pass
+        
+            if lista1[0] > lista2[0]:
+                print(lista1[0], "mayor que", lista2[0])
+                listaCombinada.append(lista2[0])
+                lista2.remove(lista2[0])
+
+
+            elif lista2[0] > lista1[0]:
+                print(lista2[0], "mayor que", lista1[0])
+                listaCombinada.append(lista1[0])
+                lista1.remove(lista1[0])
+
+
+            else:
+                print("son iguales")
+                listaCombinada.append(lista1[0])
+                listaCombinada.append(lista2[0])
+                lista1.remove(lista1[0])
+                lista2.remove(lista2[0])
+
+
+        if len(lista1) != 0:
+            for i in range(len(lista1)):
+                listaCombinada.append(lista1[i])
+
+
+        elif len(lista2) != 0:
+            for i in range(len(lista2)):
+                listaCombinada.append(lista2[i])
+
+        return listaCombinada
     
     def rotar_lista(self, lista, k):
-        """
-        Rota los elementos de una lista k posiciones a la derecha.
         
-        Args:
-            lista (list): Lista a rotar
-            k (int): Número de posiciones a rotar
-            
-        Returns:
-            list: Lista rotada
-        """
-        pass
+        if len(lista) != 0:
+
+            for i in range(k):
+
+                ultimo = lista[len(lista)-1]
+                lista.remove(lista[len(lista)-1])
+                lista.insert(0,ultimo)
+
+        return lista
+
+
+
     
     def encuentra_numero_faltante(self, lista):
-        """
-        Encuentra el número faltante en una lista de enteros del 1 al n.
-        
-        Args:
-            lista (list): Lista de enteros del 1 al n con un número faltante
-            
-        Returns:
-            int: El número que falta en la secuencia
-        """
-        pass
+
+        lista.sort()
+
+        if(lista[0] != 1):
+            return 1
+    
+        else:
+            print(lista)
+            for i in range(len(lista)-1):
+
+                if lista[i] - lista[i+1] != -1:
+                    print(lista[i] - lista[i+1])
+                    return lista[i]+1
+
+            return lista[len(lista)-1]+1
     
     def es_subconjunto(self, conjunto1, conjunto2):
-        """
-        Verifica si conjunto1 es subconjunto de conjunto2 sin usar set.
-        
-        Args:
-            conjunto1 (list): Posible subconjunto
-            conjunto2 (list): Conjunto principal
+
+        for i in conjunto1:
             
-        Returns:
-            bool: True si conjunto1 es subconjunto de conjunto2, False en caso contrario
-        """
-        pass
+            if i not in conjunto2:
+                return False
+            
+        return True
     
     def implementar_pila(self):
         """
