@@ -80,21 +80,16 @@ class Games:
             return("continua") 
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
-        """
-        Genera una combinación aleatoria para el juego Mastermind.
-        
-        Args:
-            longitud (int): Número de posiciones en la combinación
-            colores_disponibles (list): Lista de colores disponibles
-            
-        Returns:
-            list: Combinación de colores de la longitud especificada
-            
-        Ejemplo:
-            generar_combinacion_mastermind(4, ["rojo", "azul", "verde"]) 
-            -> ["rojo", "azul", "rojo", "verde"]
-        """
-        pass
+
+        import random
+        combinacion_aleatoria = []
+
+        for i in range(longitud):
+            aleatorio = random.randint(0,len(colores_disponibles)-1)
+            combinacion_aleatoria.append(colores_disponibles[aleatorio])
+
+        return combinacion_aleatoria
+
     
     def validar_movimiento_torre_ajedrez(self, desde_fila, desde_col, hasta_fila, hasta_col, tablero):
         """
@@ -114,4 +109,45 @@ class Games:
             - La torre se mueve horizontal o verticalmente
             - No puede saltar sobre otras piezas
         """
-        pass
+
+        if desde_fila > 7 or desde_fila < 0:
+            return False
+
+
+        elif desde_col > 7 or desde_col < 0:
+            return False
+
+        elif hasta_fila > 7 or hasta_fila < 0:
+            return False
+        
+        elif hasta_col > 7 or hasta_col < 0:
+            return False
+
+        if desde_fila != hasta_fila: #varia la fila
+
+            if desde_col != hasta_col: #si varia columna es porque hace movimiento diagonal
+                return False
+
+            else:
+
+                for i in range(desde_fila+1, hasta_fila+1): # desde la siguiente casilla a la que esta parada hasta la casilla a la cual se quiere mover
+                    if tablero[i][desde_col] != " ": # si la fila varia, no varia columna, observamos si todos son espacios vacios
+                        return False
+                return True
+        
+    
+        elif desde_col != hasta_col:
+
+            if desde_fila != hasta_fila:
+                return False     
+
+            else:
+
+                for i in range(desde_col+1, hasta_col+1):
+                    if tablero[desde_fila][i] != " ":
+                        return False
+
+                return True
+
+        else:
+            return False
