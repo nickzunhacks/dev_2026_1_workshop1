@@ -1,51 +1,83 @@
 class Games:
     def piedra_papel_tijera(self, jugador1, jugador2):
-        """
-        Determina el ganador del juego piedra, papel o tijera.
+
+        permitidos = ["piedra", "papel", "tijera"]
+
+        casos = {
+            "tijera papel" : "jugador1",
+            "papel piedra" : "jugador1",
+            "piedra tijera" : "jugador1",
+            "papel tijera" : "jugador2",
+            "piedra papel" : "jugador2",
+            "tijera piedra" : "jugador2"
+        }
+
+        jugador1 = jugador1.lower()
+        jugador2 = jugador2.lower()
+
+        if jugador1 == jugador2:
+            return "empate"
         
-        Args:
-            jugador1 (str): Elección del jugador 1 ("piedra", "papel", "tijera")
-            jugador2 (str): Elección del jugador 2 ("piedra", "papel", "tijera")
-            
-        Returns:
-            str: "jugador1", "jugador2" o "empate"
-            
-        Reglas:
-            - Piedra vence a tijera
-            - Tijera vence a papel
-            - Papel vence a piedra
-        """
-        pass
+        elif jugador1 not in permitidos or jugador2 not in permitidos:
+            return "invalid"
+        
+        else:
+            return casos[jugador1 + " " + jugador2]
+        
+
     
     def adivinar_numero_pista(self, numero_secreto, intento):
-        """
-        Proporciona pistas para un juego de adivinanza de números.
+
+        if intento > numero_secreto:
+            return "muy alto"
         
-        Args:
-            numero_secreto (int): El número que se debe adivinar
-            intento (int): El número propuesto por el jugador
-            
-        Returns:
-            str: "correcto", "muy alto" o "muy bajo"
-        """
-        pass
+        elif intento < numero_secreto:
+            return "muy bajo"
+        
+        else:
+            return "correcto"
     
     def ta_te_ti_ganador(self, tablero):
+
+        """"
+        [
+        ["X", "X", "X"],
+        ["O", "O", " "],
+        [" ", " ", " "]
+        ] -> "X"
         """
-        Verifica si hay un ganador en un tablero de tic-tac-toe.
         
-        Args:
-            tablero (list): Matriz 3x3 con valores "X", "O" o " " (espacio vacío)
-            
-        Returns:
-            str: "X", "O", "empate" o "continua"
-            
-        Ejemplo:
-            [["X", "X", "X"],
-             ["O", "O", " "],
-             [" ", " ", " "]] -> "X"
-        """
-        pass
+        vacios = False
+
+
+        for i in range(0,3):
+        
+        
+            if tablero[i][0] == tablero[i][1] == tablero[i][2] != " ":
+                return(tablero[i][0])
+
+
+            elif tablero[0][i] == tablero[1][i] == tablero[2][i] != " ":
+                return(tablero[0][i])
+
+
+            elif " " in tablero[i]:
+                vacios = True
+
+
+        if tablero[0][0] == tablero[1][1] == tablero[2][2] != " ":
+            return(tablero[0][0])
+
+
+        elif tablero[0][2] == tablero[1][1] == tablero[2][0] != " ":
+            return(tablero[0][2])
+
+
+        elif vacios == False:
+            return("empate")
+
+        else:
+            return("continua") 
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
         """
