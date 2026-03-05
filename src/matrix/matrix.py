@@ -80,6 +80,9 @@ class Matrix:
 
     def transpuesta(self, matriz):
         
+        if len(matriz) == 0:
+            return traspuesta
+        
         traspuesta = []
         
         for i in range(len(matriz[0])):
@@ -88,6 +91,7 @@ class Matrix:
         return traspuesta
 
     def es_cuadrada(self, matriz):
+        
         """
         Verifica si una matriz es cuadrada (mismo número de filas y columnas).
 
