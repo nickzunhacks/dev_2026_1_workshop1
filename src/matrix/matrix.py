@@ -79,19 +79,13 @@ class Matrix:
         pass
 
     def transpuesta(self, matriz):
-        """
-        Calcula la transpuesta de una matriz (intercambia filas por columnas).
-
-        Args:
-            matriz (list): Matriz (lista de listas)
-
-        Returns:
-            list: Matriz transpuesta
-
-        Ejemplo:
-            transpuesta([[1, 2, 3], [4, 5, 6]]) -> [[1, 4], [2, 5], [3, 6]]
-        """
-        pass
+        
+        traspuesta = []
+        
+        for i in range(len(matriz[0])):
+            traspuesta.append([fila[i] for fila in matriz])
+            
+        return traspuesta
 
     def es_cuadrada(self, matriz):
         """
