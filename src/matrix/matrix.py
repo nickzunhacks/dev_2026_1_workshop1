@@ -70,37 +70,29 @@ class Matrix:
 
 
     def multiplicar_escalar(self, matriz, escalar):
-        """
-        Multiplica cada elemento de la matriz por un escalar.
-
-        Args:
-            matriz (list): Matriz (lista de listas)
-            escalar (number): Valor escalar por el que se multiplica
-
-        Returns:
-            list: Matriz con cada elemento multiplicado por el escalar
-
-        Ejemplo:
-            multiplicar_escalar([[1, 2], [3, 4]], 3) -> [[3, 6], [9, 12]]
-        """
-        pass
+        
+        for i in range(len(matriz)):
+            for j in range(len(matriz[0])):
+                matriz[i][j] *= escalar
+                
+        return matriz
+            
+            
 
     def transpuesta(self, matriz):
-        """
-        Calcula la transpuesta de una matriz (intercambia filas por columnas).
-
-        Args:
-            matriz (list): Matriz (lista de listas)
-
-        Returns:
-            list: Matriz transpuesta
-
-        Ejemplo:
-            transpuesta([[1, 2, 3], [4, 5, 6]]) -> [[1, 4], [2, 5], [3, 6]]
-        """
-        pass
+        
+        if len(matriz) == 0:
+            return traspuesta
+        
+        traspuesta = []
+        
+        for i in range(len(matriz[0])):
+            traspuesta.append([fila[i] for fila in matriz])
+            
+        return traspuesta
 
     def es_cuadrada(self, matriz):
+        
         """
         Verifica si una matriz es cuadrada (mismo número de filas y columnas).
 
