@@ -147,107 +147,76 @@ class Matrix:
         determinante = diagonales_principales - diagonales_secundarias
 
         return determinante
-        """
-        Calcula el determinante de una matriz 3x3 usando la regla de Sarrus.
-
-        Args:
-            matriz (list): Matriz 3x3 (lista de listas)
-
-        Returns:
-            number: El determinante de la matriz
-
-        Raises:
-            ValueError: Si la matriz no es 3x3
-
-        Ejemplo:
-            determinante_3x3([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> 0
-            determinante_3x3([[1, 0, 0], [0, 2, 0], [0, 0, 3]]) -> 6
-        """
-        pass
-
+    
     def identidad(self, n):
-        """
-        Genera una matriz identidad de tamaño n x n.
-        La diagonal principal tiene 1s y el resto 0s.
 
-        Args:
-            n (int): Tamaño de la matriz identidad
+        matriz = []
 
-        Returns:
-            list: Matriz identidad n x n
+        for i in range(n):
+            matriz.append([])
+            for j in range(n):
+                matriz[i].append(0)
 
-        Ejemplo:
-            identidad(2) -> [[1, 0], [0, 1]]
-            identidad(3) -> [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-        """
-        pass
+        for i in range(n):
+            matriz[i][i] = 1
+
+        return matriz
 
     def diagonal(self, matriz):
-        """
-        Extrae los elementos de la diagonal principal de una matriz cuadrada.
 
-        Args:
-            matriz (list): Matriz cuadrada (lista de listas)
+        cuadrada = self.es_cuadrada(matriz)
 
-        Returns:
-            list: Lista con los elementos de la diagonal principal
+        if not cuadrada:
+            raise ValueError("La matriz debe ser cuadrada")
+        
+        diagonal = []
 
-        Raises:
-            ValueError: Si la matriz no es cuadrada
+        for i in range(len(matriz)):
+            diagonal.append(matriz[i][i])
 
-        Ejemplo:
-            diagonal([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [1, 5, 9]
-            diagonal([[3, 0], [0, 7]]) -> [3, 7]
-        """
-        pass
+        return diagonal
 
     def es_diagonal(self, matriz):
-        """
-        Verifica si una matriz cuadrada es diagonal
-        (todos los elementos fuera de la diagonal principal son cero).
 
-        Args:
-            matriz (list): Matriz cuadrada (lista de listas)
+        for i in range(len(matriz)):
+            if matriz[i][i] == 0:
+                return False
+            
+        for i in range(len(matriz)):
+            for j in range(len(matriz)):
+                
+                if i == j:
+                    pass
 
-        Returns:
-            bool: True si la matriz es diagonal, False en caso contrario
+                elif matriz[i][j] != 0:
+                    return False
+                
+        return True
 
-        Ejemplo:
-            es_diagonal([[3, 0], [0, 7]]) -> True
-            es_diagonal([[1, 2], [0, 4]]) -> False
-        """
-        pass
 
     def rotar_90(self, matriz):
-        """
-        Rota una matriz 90 grados en sentido horario.
 
-        Args:
-            matriz (list): Matriz (lista de listas)
+        invertida = self.transpuesta(matriz)
 
-        Returns:
-            list: Matriz rotada 90 grados en sentido horario
+        for i in invertida:
+            i.reverse()
 
-        Ejemplo:
-            rotar_90([[1, 2], [3, 4]]) -> [[3, 1], [4, 2]]
-            rotar_90([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) -> [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
-        """
-        pass
+        return invertida
 
     def buscar_en_matriz(self, matriz, valor):
-        """
-        Busca un valor en la matriz y retorna todas las posiciones donde se encuentra.
 
-        Args:
-            matriz (list): Matriz (lista de listas)
-            valor: Valor a buscar en la matriz
+        ubicaciones = []
+        for i in range(len(matriz)):
 
-        Returns:
-            list: Lista de tuplas (fila, columna) con las posiciones del valor.
-                  Retorna lista vacía si no se encuentra.
+            for j in range(len(matriz)):
+                
+                if matriz[i][j] == valor:
+                    ubicaciones.append((i,j))
 
-        Ejemplo:
-            buscar_en_matriz([[1, 2, 3], [4, 2, 6], [7, 8, 2]], 2) -> [(0, 1), (1, 1), (2, 2)]
-            buscar_en_matriz([[1, 2], [3, 4]], 9) -> []
-        """
-        pass
+        return ubicaciones      
+
+
+
+
+
+
