@@ -5,62 +5,69 @@ class Matrix:
     """
 
     def suma_matrices(self, A, B):
-        """
-        Suma dos matrices elemento a elemento.
 
-        Args:
-            A (list): Primera matriz (lista de listas)
-            B (list): Segunda matriz (lista de listas), debe tener las mismas dimensiones que A
+        if len(A[0]) != len(B[0]):
+            raise ValueError("numero de columnas incopatible")
 
-        Returns:
-            list: Matriz resultante de la suma
+        elif len(A) != len(B):
+            raise ValueError("numero de filas incopatible")
+        
+        C = []
 
-        Raises:
-            ValueError: Si las matrices tienen dimensiones incompatibles
+        for i in range(len(A)):
+            suma = []
 
-        Ejemplo:
-            suma_matrices([[1, 2], [3, 4]], [[5, 6], [7, 8]]) -> [[6, 8], [10, 12]]
-        """
-        pass
+            for j in range(len(A[i])):
+                suma.append (A[i][j] + B[i][j])
+
+            C.append(suma)
+
+        return C
 
     def resta_matrices(self, A, B):
-        """
-        Resta dos matrices elemento a elemento (A - B).
+        
+        if len(A[0]) != len(B[0]):
+            raise ValueError("numero de columnas incopatible")
+        
+        elif len(A) != len(B):
+            raise ValueError("numero de filas incopatible")
 
-        Args:
-            A (list): Primera matriz (lista de listas)
-            B (list): Segunda matriz (lista de listas), debe tener las mismas dimensiones que A
+        C = []
 
-        Returns:
-            list: Matriz resultante de la resta
+        for i in range(len(A)):
+            resta = []
 
-        Raises:
-            ValueError: Si las matrices tienen dimensiones incompatibles
+            for j in range(len(A[i])):
+                resta.append (A[i][j] - B[i][j])
 
-        Ejemplo:
-            resta_matrices([[5, 6], [7, 8]], [[1, 2], [3, 4]]) -> [[4, 4], [4, 4]]
-        """
-        pass
+            C.append(resta)
+
+        return C
 
     def multiplicar_matrices(self, A, B):
-        """
-        Multiplica dos matrices usando la multiplicación matricial estándar.
-        El número de columnas de A debe ser igual al número de filas de B.
 
-        Args:
-            A (list): Primera matriz de dimensiones m x n
-            B (list): Segunda matriz de dimensiones n x p
+        if len(A[0]) != len(B):
+            raise ValueError("matrices incompatibles")
 
-        Returns:
-            list: Matriz resultante de dimensiones m x p
+        C = []
+        suma = []
 
-        Raises:
-            ValueError: Si las dimensiones son incompatibles para multiplicación
+        for i in range(len(A)):
+            suma = []
 
-        Ejemplo:
-            multiplicar_matrices([[1, 2], [3, 4]], [[5, 6], [7, 8]]) -> [[19, 22], [43, 50]]
-        """
-        pass
+            for j in range(len(A)):
+                suma.append(0)
+
+                for k in range(len(B)):
+                    print(f"suma[{j}] += {A[i][k]} * {B[k][j]}")
+                    suma[j] += A[i][k] * B[k][j]
+
+            C.append(suma)
+
+        return C
+
+
+
 
     def multiplicar_escalar(self, matriz, escalar):
         """
