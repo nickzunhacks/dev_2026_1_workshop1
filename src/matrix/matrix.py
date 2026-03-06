@@ -81,10 +81,10 @@ class Matrix:
 
     def transpuesta(self, matriz):
         
+        traspuesta = []
+
         if len(matriz) == 0:
             return traspuesta
-        
-        traspuesta = []
         
         for i in range(len(matriz[0])):
             traspuesta.append([fila[i] for fila in matriz])
@@ -93,56 +93,40 @@ class Matrix:
 
     def es_cuadrada(self, matriz):
         
-        """
-        Verifica si una matriz es cuadrada (mismo número de filas y columnas).
+        if len(matriz) == 0:
+            return False
 
-        Args:
-            matriz (list): Matriz (lista de listas)
+        filas = len(matriz)
+        columnas = len(matriz[0])
 
-        Returns:
-            bool: True si la matriz es cuadrada, False en caso contrario
-
-        Ejemplo:
-            es_cuadrada([[1, 2], [3, 4]]) -> True
-            es_cuadrada([[1, 2, 3], [4, 5, 6]]) -> False
-        """
-        pass
+        if filas == columnas:
+            return True
+        
+        else:
+            return False
 
     def es_simetrica(self, matriz):
-        """
-        Verifica si una matriz es simétrica (igual a su transpuesta).
-        Solo aplica a matrices cuadradas.
 
-        Args:
-            matriz (list): Matriz cuadrada (lista de listas)
+        traspuesta = self.transpuesta(matriz)
 
-        Returns:
-            bool: True si la matriz es simétrica, False en caso contrario
-
-        Ejemplo:
-            es_simetrica([[1, 2, 3], [2, 5, 6], [3, 6, 9]]) -> True
-            es_simetrica([[1, 2], [3, 4]]) -> False
-        """
-        pass
+        if traspuesta == matriz:
+            return True
+        else:
+            return False
 
     def traza(self, matriz):
-        """
-        Calcula la traza de una matriz cuadrada (suma de los elementos de la diagonal principal).
+        
+        cuadrada = self.es_cuadrada(matriz)
 
-        Args:
-            matriz (list): Matriz cuadrada (lista de listas)
+        if not cuadrada:
+            raise ValueError("debe ser cuadrada para calcular la traza")
 
-        Returns:
-            number: La suma de los elementos de la diagonal principal
+        traza = 0
 
-        Raises:
-            ValueError: Si la matriz no es cuadrada
+        for i in range(len(matriz)):
+            traza += matriz[i][i]
 
-        Ejemplo:
-            traza([[1, 2], [3, 4]]) -> 5
-            traza([[1, 0, 0], [0, 5, 0], [0, 0, 9]]) -> 15
-        """
-        pass
+        return traza
 
     def determinante_2x2(self, matriz):
         """
