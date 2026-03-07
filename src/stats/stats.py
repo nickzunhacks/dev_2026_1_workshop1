@@ -44,20 +44,18 @@ class Stats:
         return mayor
     
     def desviacion_estandar(self, numeros):
-        """
-        Calcula la desviación estándar de una lista de números.
-        Usa la fórmula de desviación estándar poblacional.
+
+        if len(numeros) == 0:
+            return 0
         
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: La desviación estándar
-            
-        Ejemplo:
-            desviacion_estandar([1, 2, 3, 4, 5]) -> 1.41...
-        """
-        pass
+        med = self.mediana(numeros)
+        sumatoria = 0
+
+        for i in numeros:
+            sumatoria += (i-med)**2      
+
+        desviacion = ( sumatoria / len(numeros) ) ** 0.5
+        return desviacion
     
     def varianza(self, numeros):
         """
