@@ -1,51 +1,47 @@
 class Stats:
     def promedio(self, numeros):
-        """
-        Calcula la media aritmética de una lista de números.
-        
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: La media aritmética de los números
-            
-        Ejemplo:
-            promedio([1, 2, 3, 4, 5]) -> 3.0
-        """
-        pass
+
+        promedio = 0
+        cantidad = len(numeros)
+
+        if cantidad == 0:
+            return promedio
+
+        for i in numeros:
+            promedio += i
+
+        promedio /= cantidad
+
+        return promedio
     
     def mediana(self, numeros):
-        """
-        Encuentra el valor mediano de una lista de números.
-        Para listas con número par de elementos, retorna el promedio de los dos valores centrales.
+
+        if len(numeros) == 0:
+            return 0
+
+        numeros.sort()
+
+        if len(numeros) % 2 == 0:  
+            return self.promedio( [ numeros[ int(len(numeros)/2) ], numeros[ int(len(numeros)/2 - 1)]  ] )
         
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            float: El valor mediano
-            
-        Ejemplo:
-            mediana([1, 2, 3, 4, 5]) -> 3.0
-            mediana([1, 2, 3, 4]) -> 2.5
-        """
-        pass
+        else:
+            return numeros[ int(len(numeros)/2) ]
     
     def moda(self, numeros):
-        """
-        Encuentra el valor que aparece con mayor frecuencia en la lista.
-        Si hay empate, retorna el primer valor encontrado.
+
+        if len(numeros) == 0:
+            return None
         
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            number: El valor más frecuente
-            
-        Ejemplo:
-            moda([1, 2, 2, 3, 3, 3]) -> 3
-        """
-        pass
+        elementos = {}
+
+        for i in numeros:
+            try:
+                elementos[i] += 1
+            except:
+                elementos[i] = 1
+                
+        mayor = max(elementos, key=elementos.get)
+        return mayor
     
     def desviacion_estandar(self, numeros):
         """
