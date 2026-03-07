@@ -62,16 +62,11 @@ class Stats:
         return (self.desviacion_estandar(numeros))**2
     
     def rango(self, numeros):
-        """
-        Calcula el rango (diferencia entre el valor máximo y mínimo).
+
+        if len(numeros) == 0:
+            return 0
         
-        Args:
-            numeros (list): Lista de números
-            
-        Returns:
-            number: La diferencia entre max y min
-            
-        Ejemplo:
-            rango([1, 5, 3, 9, 2]) -> 8
-        """
-        pass
+        maximo = max(numeros)
+        minimo = min(numeros)
+
+        return maximo - minimo
