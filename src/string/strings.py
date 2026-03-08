@@ -5,89 +5,110 @@ class Strings:
     """
     
     def es_palindromo(self, texto):
-        """
-        Verifica si una cadena es un palíndromo (se lee igual de izquierda a derecha y viceversa).
+
+        texto_invertido = texto[::-1].lower()
+        texto = texto.lower()
+
+        texto_invertido = texto_invertido.replace(" ","")
+        texto = texto.replace(" ","")
+
+        if texto == texto_invertido:
+            return True
         
-        Args:
-            texto (str): Cadena a verificar
-            
-        Returns:
-            bool: True si es palíndromo, False en caso contrario
-        """
-        pass
+        else:
+            return False
     
     def invertir_cadena(self, texto):
-        """
-        Invierte una cadena de texto sin usar slicing ni reversed().
-        
-        Args:
-            texto (str): Cadena a invertir
-            
-        Returns:
-            str: Cadena invertida
-        """
-        pass
+
+        cadena_invertida = ""
+
+        texto_lista = list(texto)
+
+        for i in range(len(texto_lista)-1,-1,-1):
+            cadena_invertida += texto_lista[i]
+
+        return cadena_invertida
+
     
     def contar_vocales(self, texto):
-        """
-        Cuenta el número de vocales en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar vocales
-            
-        Returns:
-            int: Número de vocales en la cadena
-        """
-        pass
+
+        vocales = ["a","e","i","o","u"]
+        texto = texto.lower()
+
+        num_vocales = 0
+
+        for i in texto:
+            if i in vocales:
+                num_vocales += 1
+
+        return num_vocales
     
     def contar_consonantes(self, texto):
-        """
-        Cuenta el número de consonantes en una cadena.
-        
-        Args:
-            texto (str): Cadena para contar consonantes
-            
-        Returns:
-            int: Número de consonantes en la cadena
-        """
-        pass
+
+        vocales = ["a","e","i","o","u"]
+
+        num_consonantes = 0
+
+        texto = texto.lower()
+
+        for i in texto:
+
+            if i in vocales:
+                continue
+            num_consonantes += 1
+
+        return num_consonantes
     
     def es_anagrama(self, texto1, texto2):
-        """
-        Verifica si dos cadenas son anagramas (contienen exactamente los mismos caracteres).
+
+        texto1 = texto1.replace(" ","")
+        texto2 = texto2.replace(" ","")
+
+        texto1 = texto1.lower()
+        texto2 = texto2.lower()
+
+        if len(texto1) != len(texto2):
+            return False
         
-        Args:
-            texto1 (str): Primera cadena
-            texto2 (str): Segunda cadena
+        texto1 = list(texto1)
+        texto2 = list(texto2)
+
+        for i in range(len(texto1)):
+            if texto1[i] not in texto2:
+                return False
             
-        Returns:
-            bool: True si son anagramas, False en caso contrario
-        """
-        pass
+        return True
     
     def contar_palabras(self, texto):
-        """
-        Cuenta el número de palabras en una cadena.
+
+        texto = texto.strip()
         
-        Args:
-            texto (str): Cadena para contar palabras
-            
-        Returns:
-            int: Número de palabras en la cadena
-        """
-        pass
+        if len(texto) == 0:
+            return 0
+        
+        palabras = 1
+
+        for i in texto:
+            if i == " ":
+                palabras += 1
+
+        return palabras
     
     def palabras_mayus(self, texto):
-        """
-        Pon en Mayuscula la primera letra de cada palabra en una cadena.
-        
-        Args:
-            texto (str): Cadena
-            
-        Returns:
-            str: Cadena con la primera letra de cada palabra en mayúscula
-        """
-        pass
+
+        texto = list(texto)
+        first_letter = True
+
+        for i in range(len(texto)):
+
+            if texto[i] != " " and first_letter == True:
+                texto[i] = texto[i].upper()
+                first_letter = False
+                
+            elif texto[i] == " ":
+                first_letter = True
+
+        return "".join(texto)
     
     def eliminar_espacios_duplicados(self, texto):
         """
